@@ -6,7 +6,12 @@ namespace UserRegistration
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome To The User Registration Program");
+            ValidateUserRegistration validateUserRegistration = new ValidateUserRegistration();
+            Console.WriteLine("Enter your first name : ");
+            string firstName = Console.ReadLine();
+            bool fNameResult = validateUserRegistration.ValidateFirstName(firstName);
+            validateUserRegistration.PrintResult(fNameResult);
+
         }
     }
 }
