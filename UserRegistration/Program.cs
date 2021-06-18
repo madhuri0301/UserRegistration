@@ -24,8 +24,13 @@ namespace UserRegistration
             //emailId
             Console.WriteLine("Enter your email : ");
             string email = Console.ReadLine();
-            bool emailResult = validateUserRegistration.ValidateEmail(email); //Validating FisrtName Of User
+            bool emailResult = validateUserRegistration.ValidateEmail(email); //Validating email Of User
             validateUserRegistration.PrintResult(emailResult); //Print Email Of User
+
+            Console.WriteLine("Enter your mobile number : ");
+            string mobileNo = Console.ReadLine();
+            bool mobileNoResult = validateUserRegistration.ValidateMobileNo(mobileNo); //Validiating Mobile Number Of User
+            validateUserRegistration.PrintResult(mobileNoResult); //Print Mobile Number Of User
         }
     }
 }
