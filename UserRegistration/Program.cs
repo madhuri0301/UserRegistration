@@ -37,12 +37,7 @@ namespace UserRegistration
             bool passwordResult = validateUserRegistration.ValidatePassword(password); //Validating Password Of User
             validateUserRegistration.PrintResult(passwordResult);
 
-            Console.WriteLine("Checking for sample mails :");
-            foreach (string mail in validateUserRegistration.GetList())
-            {
-                Console.Write(mail + " : ");
-                validateUserRegistration.PrintResult(validateUserRegistration.ValidateEmail2(mail));
-            }
+          
 
         }
     }

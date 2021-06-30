@@ -7,38 +7,13 @@ namespace UserRegistration
 {
     public class ValidateUserRegistration
     {
-        private List<string> sampleMails = new List<string>()
-        {
-            "abc@yahoo.com",
-            "abc-100@yahoo.com",
-            "abc-100@yahoo.com",
-            "abc.100@yahoo.com",
-            "abc111@abc.com",
-            "abc-100@abc.net",
-            "abc.100@abc.com.au",
-            "abc@1.com",
-            "abc@gmail.com.com",
-            "abc+100@gmail.com",
-
-            "abc@.com.my",
-            "abc123@gmail.a",
-            "abc123@.com",
-            "abc123@.com.com",
-            ".abc@abc.com",
-            "abc()*@gmail.com",
-            "abc@%*.com",
-            "abc..2002@gmail.com",
-            "abc.@gmail.com",
-            "abc@abc@gmail.com",
-            "abc@gmail.com.1a",
-            "abc@gmail.com.aa.au"
-        };
+       
         private static string Regex_FirstName = "^[A-Z]{1}[a-z]{2,}$";
         private static string Regex_LastName = "^[A-Z]{1}[a-z]{2,}$";
         private static string Regex_Email = "^[0-9a-zA-Z]{1,}([._+-][0-9a-zA-Z]{0,})*[@][0-9a-zA-Z]{1,}.[a-zA-Z]{2,3}(.[a-zA-Z]{2,3})?$";
         private static string Regex_MobileNo = "^[9]{1}[1]{1}\\s[6-9]{1}[0-9]{9}$";
         private static string Regex_Password = "^(?=.*[0-9])(?=.*[A-Z])(?=[^!@#$%&+-.]*[!@#$%&+-.][^!@#$%&+-.]*$)[\\S]{8,}$";
-        private static string Regex_Email2 = "^[0-9a-zA-Z]{1,}([._+-][0-9a-zA-Z]{0,})*[@][0-9a-zA-Z]{1,}.[a-zA-Z]{2,3}(.[a-zA-Z]{2,3})?$";
+       
 
         public bool ValidateFirstName(string FN)
         {
@@ -60,10 +35,6 @@ namespace UserRegistration
         {
             return Regex.IsMatch(Password, Regex_Password);
         }
-        public bool ValidateEmail2(string email)
-        {
-            return Regex.IsMatch(email, Regex_Email2);
-        }
 
         public void PrintResult(bool result)
         {
@@ -76,9 +47,17 @@ namespace UserRegistration
                 Console.WriteLine("Invalid.");
             }
         }
-        public List<string> GetList()
+        public string CheckMultipleEmail(string Mail1, string Mail2, string Mail3)
         {
-            return sampleMails;
+            ValidateUserRegistration Mail = new ValidateUserRegistration();
+            bool MailEntry1 = Mail.ValidateEmail(Mail1);
+            bool MailEntry2 = Mail.ValidateEmail(Mail2);
+            bool MailEntry3 = Mail.ValidateEmail(Mail3);
+            if (MailEntry1 && MailEntry2 && MailEntry3)
+                return "Entry is Succesfull";
+            else
+                return "Entry is Fail";
         }
+
     }
 }

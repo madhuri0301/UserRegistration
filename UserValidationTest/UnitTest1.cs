@@ -1,5 +1,9 @@
-using NUnit.Framework;
+
 using UserRegistration;
+using System;
+using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace UserValidationTest
 {
@@ -11,7 +15,7 @@ namespace UserValidationTest
         {
             //Arrange
             ValidateUserRegistration user = new ValidateUserRegistration();
-            string firstName = "MAdhuri";
+            string firstName = "Madhuri";
             //Act
             bool result = user.ValidateFirstName(firstName);
             //Assert
@@ -78,7 +82,7 @@ namespace UserValidationTest
         {
             //Arrange
             ValidateUserRegistration user = new ValidateUserRegistration();
-            string lastName = "Patil";
+            string lastName = "Pa";
             //Act
             bool result = user.ValidateFirstName(lastName);
             //Assert
@@ -89,7 +93,7 @@ namespace UserValidationTest
         {
             //Arrange
             ValidateUserRegistration user = new ValidateUserRegistration();
-            string email = "harshupatil0301@gmail.com";
+            string email = "harshupatil@gmail0301.com";
             //Act
             bool result = user.ValidateEmail(email);
             //Assert
@@ -100,7 +104,7 @@ namespace UserValidationTest
         {
             //Arrange
             ValidateUserRegistration user = new ValidateUserRegistration();
-            string mobileNumber = "91 6688342519";
+            string mobileNumber = "916688342519";
             //Act
             bool result = user.ValidateMobileNo(mobileNumber);
             //Assert
@@ -116,6 +120,13 @@ namespace UserValidationTest
             bool result = user.ValidatePassword(password);
             //Assert
             Assert.IsFalse(result);
+        }
+        [Test]
+        public void MultipleMail()
+        {
+            ValidateUserRegistration Mail = new ValidateUserRegistration();
+            var Result = Mail.CheckMultipleEmail("Madhuri0301@gmail.com", "Krishna-100@yahoo.com", "Suhas12@gmail.com");
+            Assert.AreEqual(Result, "Entry is Succesfull");
         }
     }
 }
