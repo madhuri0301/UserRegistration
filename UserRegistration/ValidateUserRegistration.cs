@@ -7,7 +7,6 @@ namespace UserRegistration
 {
     public class ValidateUserRegistration
     {
-       
         private static string Regex_FirstName = "^[A-Z]{1}[a-z]{2,}$";
         private static string Regex_LastName = "^[A-Z]{1}[a-z]{2,}$";
         private static string Regex_Email = "^[0-9a-zA-Z]{1,}([._+-][0-9a-zA-Z]{0,})*[@][0-9a-zA-Z]{1,}.[a-zA-Z]{2,3}(.[a-zA-Z]{2,3})?$";
@@ -17,23 +16,73 @@ namespace UserRegistration
 
         public bool ValidateFirstName(string FN)
         {
-            return Regex.IsMatch(FN, Regex_FirstName);
+            try
+            {
+               
+                Regex rg = new Regex(Regex_FirstName);
+                return rg.IsMatch(FN);
+            }
+            catch (CustomException)
+            {
+                throw new CustomException
+                    (CustomException.ExceptionType.INVALID_NAME, "Invalid User First Name.");
+            }   
         }
         public bool ValidateLastName(string LN)
         {
-            return Regex.IsMatch(LN, Regex_LastName);
+            try
+            {
+
+                Regex rg = new Regex(Regex_LastName);
+                return rg.IsMatch(LN);
+            }
+            catch (CustomException)
+            {
+                throw new CustomException
+                    (CustomException.ExceptionType.INVALID_NAME, "Invalid User Last Name.");
+            }
         }
         public bool ValidateEmail(string Email)
         {
-            return Regex.IsMatch(Email, Regex_Email);
+            try
+            {
+
+                Regex rg = new Regex(Regex_Email);
+                return rg.IsMatch(Email);
+            }
+            catch (CustomException)
+            {
+                throw new CustomException
+                    (CustomException.ExceptionType.INVALID_EMAIL, "Invalid User Email.");
+            }
         }
         public bool ValidateMobileNo(string MobileNo)
         {
-            return Regex.IsMatch(MobileNo, Regex_MobileNo);
+            try
+            {
+
+                Regex rg = new Regex(Regex_MobileNo);
+                return rg.IsMatch(MobileNo);
+            }
+            catch (CustomException)
+            {
+                throw new CustomException
+                    (CustomException.ExceptionType.INVALID_MOBILE_NUMBER, "Invalid User Mobile Number.");
+            }
         }
         public bool ValidatePassword(string Password)
         {
-            return Regex.IsMatch(Password, Regex_Password);
+            try
+            {
+
+                Regex rg = new Regex(Regex_Password);
+                return rg.IsMatch(Password);
+            }
+            catch (CustomException)
+            {
+                throw new CustomException
+                    (CustomException.ExceptionType.INVALID_PASSWORD, "Invalid User Password.");
+            }
         }
 
         public void PrintResult(bool result)

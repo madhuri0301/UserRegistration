@@ -2,16 +2,15 @@
 using UserRegistration;
 using System;
 using NUnit.Framework;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace UserValidationTest
 {
     public class Tests
     {
+
         //Happy Test Cases(Test Cases Pass The Entries)
         [Test]
-        public void GivenUserFistName_WhenValidate_ShouldReturnTrue()
+        public void GivenUserFirstName_WhenValidate_ShouldReturnTrue()
         {
             //Arrange
             ValidateUserRegistration user = new ValidateUserRegistration();
@@ -20,6 +19,20 @@ namespace UserValidationTest
             bool result = user.ValidateFirstName(firstName);
             //Assert
             Assert.IsTrue(result);
+        }
+        [Test]
+        public void GivenInvalidFirstName_WhenNameNotStartingWithUpper_ShouldReturnFalse()
+        {
+            try
+            {
+                ValidateUserRegistration user = new ValidateUserRegistration();
+                bool result = user.ValidateFirstName("madhuri");
+
+            }
+            catch (CustomException e)
+            {
+                Assert.AreEqual("Invalid User First Name.", e.Message);
+            }
         }
         [Test]
         public void GivenUserLastName_WhenValidate_ShouldReturnTrue()
@@ -33,6 +46,20 @@ namespace UserValidationTest
             Assert.IsTrue(result);
         }
         [Test]
+        public void GivenInvalidLastName_WhenNameNotStartingWithUpper_ShouldReturnFalse()
+        {
+            try
+            {
+                ValidateUserRegistration user = new ValidateUserRegistration();
+                bool result = user.ValidateFirstName("patil");
+
+            }
+            catch (CustomException e)
+            {
+                Assert.AreEqual("Invalid User Last Name.", e.Message);
+            }
+        }
+        [Test]
         public void GivenEmailId_WhenValidate_ShouldReturnTrue()
         {
             //Arrange
@@ -43,6 +70,33 @@ namespace UserValidationTest
             //Assert
             Assert.IsTrue(result);
         }
+        [Test]
+        public void GivenInvalidEmail_ShouldReturnFalse()
+        {
+            try
+            {
+                ValidateUserRegistration user = new ValidateUserRegistration();
+                user.ValidateEmail("abc");
+            }
+            catch (CustomException e)
+            {
+                Assert.AreEqual("Invalid Email address.", e.Message);
+            }
+        }
+        [Test]
+        public void GivenInvalidEmail2_ShouldReturnFalse()
+        {
+            try
+            {
+                ValidateUserRegistration user = new ValidateUserRegistration();
+                user.ValidateEmail("12Har@.gmailcom");
+            }
+            catch (CustomException e)
+            {
+                Assert.AreEqual("Invalid Email address.", e.Message);
+            }
+        }
+
         [Test]
         public void GivenMobileNumber_WhenValidate_ShouldReturnTrue()
         {
@@ -55,6 +109,19 @@ namespace UserValidationTest
             Assert.IsTrue(result);
         }
         [Test]
+        public void GivenInvalidMobileNumber_ShouldReturnFalse()
+        {
+            try
+            {
+                ValidateUserRegistration user = new ValidateUserRegistration();
+                user.ValidateMobileNo("918888799769");
+            }
+            catch (CustomException e)
+            {
+                Assert.AreEqual("Invalid Mobile Number.", e.Message);
+            }
+        }
+        [Test]
         public void GivenPassword_WhenValidate_ShouldReturnTrue()
         {
             //Arrange
@@ -65,13 +132,27 @@ namespace UserValidationTest
             //Assert
             Assert.IsTrue(result);
         }
+        [Test]
+        public void GivenInvalidPassword_ShouldReturnFalse()
+        {
+            try
+            {
+                ValidateUserRegistration user = new ValidateUserRegistration();
+                user.ValidatePassword("@Kfc");
+            }
+            catch (CustomException e)
+            {
+                Assert.AreEqual("Invalid Password.", e.Message);
+            }
+        }
+
         //Sad Test Cases(Test Cases Fail The Entry)
         [Test]
-        public void GivenUserFistName_WhenValidate_ShouldReturnFalse()
+        public void GivenUserFirstName_WhenValidate_ShouldReturnFalse()
         {
             //Arrange
             ValidateUserRegistration user = new ValidateUserRegistration();
-            string firstName = "Harshu";
+            string firstName = "har";
             //Act
             bool result = user.ValidateFirstName(firstName);
             //Assert
@@ -93,7 +174,7 @@ namespace UserValidationTest
         {
             //Arrange
             ValidateUserRegistration user = new ValidateUserRegistration();
-            string email = "harshupatil@gmail0301.com";
+            string email = "_harshupatil@gmail0301com";
             //Act
             bool result = user.ValidateEmail(email);
             //Assert
@@ -115,7 +196,7 @@ namespace UserValidationTest
         {
             //Arrange
             ValidateUserRegistration user = new ValidateUserRegistration();
-            string password = "Welcome@123";
+            string password = "welcome123";
             //Act
             bool result = user.ValidatePassword(password);
             //Assert

@@ -36,9 +36,6 @@ namespace UserRegistration
             string password = Console.ReadLine();
             bool passwordResult = validateUserRegistration.ValidatePassword(password); //Validating Password Of User
             validateUserRegistration.PrintResult(passwordResult);
-
-          
-
         }
     }
 }
