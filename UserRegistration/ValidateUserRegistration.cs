@@ -107,6 +107,10 @@ namespace UserRegistration
             else
                 return "Entry is Fail";
         }
-
+        public static Func<string, bool> validateUserName = name => Regex.IsMatch(name, Regex_FirstName);
+        public static Func<string, bool> validateUserEmail = email => Regex.IsMatch(email, Regex_Email);
+        public static Func<string, bool> validateUserMobileNo = mobileNo => Regex.IsMatch(mobileNo, Regex_MobileNo);
+        public static Func<string, bool> validateUserPassword = password => Regex.IsMatch(password, Regex_Password);
     }
 }
+
